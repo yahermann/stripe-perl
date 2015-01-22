@@ -22,6 +22,7 @@ use Net::Stripe::BalanceTransaction;
 use Net::Stripe::List;
 use Net::Stripe::LineItem;
 use Net::Stripe::Refund;
+use Net::Stripe::Event;
 
 # ABSTRACT: API client for Stripe.com
 
@@ -1574,7 +1575,7 @@ sub _hash_to_object {
 
     foreach my $k (grep { ref($hash->{$_}) } keys %$hash) {
         my $v = $hash->{$k};
-        if (ref($v) eq 'HASH' && defined($v->{object})) {
+        if (ref($v) eq 'HASH' && defined($v->{object}) && ref($v->{object}) ne 'HASH') {
             $hash->{$k} = _hash_to_object($v);
         } elsif (ref($v) =~ /^(JSON::XS::Boolean|JSON::PP::Boolean)$/) {
             $hash->{$k} = $v ? 1 : 0;

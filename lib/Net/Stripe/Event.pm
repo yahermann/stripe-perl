@@ -9,7 +9,7 @@ extends 'Net::Stripe::Resource';
 has 'id'               => (is => 'ro', isa => 'Maybe[Str]');
 has 'livemode'         => (is => 'ro', isa => 'Maybe[Bool|Object]');
 has 'created'          => (is => 'ro', isa => 'Maybe[Int]');
-has 'data'             => (is => 'ro', isa => 'Maybe[Hashref]');
+has 'data'             => (is => 'ro', isa => 'Maybe[Any]');
 has 'pending_webhooks' => (is => 'ro', isa => 'Maybe[Int]');
 has 'type'             => (is => 'ro', isa => 'Maybe[Str]');
 has 'api_version'      => (is => 'ro', isa => 'Maybe[Str]');
