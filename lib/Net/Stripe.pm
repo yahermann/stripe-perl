@@ -1,5 +1,5 @@
 package Net::Stripe;
-
+$Net::Stripe::VERSION = 'x';
 use Moose;
 use Kavorka;
 use LWP::UserAgent;
@@ -758,6 +758,30 @@ Tokens: {
 
     method get_token(Str :$token_id) {
         return $self->_get("tokens/$token_id");
+    }
+}
+
+=event_method get_event
+
+Retrieves an existing event.
+
+L<https://stripe.com/docs/api#retrieve_event>
+
+=over
+
+=item * event_id - Str
+
+=back
+
+Returns a L<Net::Stripe::Event>
+
+  $stripe->get_event(event_id => 'testeventid');
+
+=cut
+
+Events: {
+    method get_event(Str :$event_id) {
+        return $self->_get("events/$event_id");
     }
 }
 
